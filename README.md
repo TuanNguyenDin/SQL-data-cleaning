@@ -5,11 +5,11 @@ This is an educational project on data cleaning and preparation using SQL. The o
 
 
 Let's inpect the inital rows to analyze the data in its original format.
-'''SQLite
+```
 SELECT * FROM club_member_info cmi LIMIT 10;
-'''
+```
 
-####The Result:
+#### The Result:
 
 |full_name|age|martial_status|email|phone|full_address|job_title|membership_date|
 |---------|---|--------------|-----|-----|------------|---------|---------------|
