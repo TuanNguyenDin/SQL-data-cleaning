@@ -87,6 +87,17 @@ SET phone = "UNKNOWN"
 WHERE phone ='';
 ```
 
+##### Remove duplicate values by using ROWID
+
+```
+DELETE FROM club_member_cleaned 
+WHERE ROWID NOT IN (
+    SELECT MIN(ROWID)
+    FROM club_member_cleaned
+    GROUP BY phone, email
+);
+```
+
 ##### Update empty job title with "Not Specified"
 
 ```
