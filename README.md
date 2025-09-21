@@ -95,4 +95,4 @@ SET job_title = "Not Specified"
 WHERE job_title ='';
 ```
 
-
+You can check my result [here](club_member_cleaned.csv)
