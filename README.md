@@ -62,5 +62,37 @@ SET full_name = LOWER(TRIM(full_name ));
 ```
 UPDATE club_member_cleaned
 SET age = (SELECT AVG(age) FROM club_member_cleaned WHERE age BETWEEN 0 AND 120)
-WHERE age > 120 OR age < 0 OR age = '' OR age is null;
+WHERE age > 120 OR age < 0 OR age = '' OR age IS NULL;
 ```
+
+##### Update null martial status value with Mode Imputation value
+
+```
+UPDATE club_member_cleaned
+SET martial_status = (
+	SELECT martial_status 
+	FROM club_member_cleaned
+	WHERE martial_status IS NOT NULL AND martial_status != ''
+	GROUP BY martial_status
+	ORDER BY COUNT(*) DESC
+	LIMIT 1)
+WHERE martial_status IS NULL OR martial_status ='';
+```
+
+##### Update null phone value to special value(Unknown)
+
+```
+UPDATE club_member_cleaned
+SET phone = "UNKNOWN"
+WHERE phone ='';
+```
+
+##### Update empty job title with "Not Specified"
+
+```
+UPDATE club_member_cleaned
+SET job_title = "Not Specified"
+WHERE job_title ='';
+```
+
+
