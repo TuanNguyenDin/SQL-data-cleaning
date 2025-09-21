@@ -50,9 +50,17 @@ INSERT INTO club_member_cleaned
 SELECT * FROM club_member_info;
 ```
 
-##### Lowcase and remove space
+##### Lowcase and remove space for name
 
 ```
 UPDATE club_member_cleaned
 SET full_name = LOWER(TRIM(full_name ));
+```
+
+##### Update age not valid(over 0-120) to avenger age
+
+```
+UPDATE club_member_cleaned
+SET age = (SELECT AVG(age) FROM club_member_cleaned WHERE age BETWEEN 0 AND 120)
+WHERE age > 120 OR age < 0 OR age = '' OR age is null;
 ```
