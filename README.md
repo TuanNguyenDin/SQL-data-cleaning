@@ -87,6 +87,16 @@ SET phone = "UNKNOWN"
 WHERE phone ='';
 ```
 
+
+##### Update empty job title with "Not Specified"
+
+```
+UPDATE club_member_cleaned
+SET job_title = "Not Specified"
+WHERE job_title ='';
+```
+
+
 ##### Remove duplicate values by using ROWID
 
 ```
@@ -96,14 +106,6 @@ WHERE ROWID NOT IN (
     FROM club_member_cleaned
     GROUP BY phone, email
 );
-```
-
-##### Update empty job title with "Not Specified"
-
-```
-UPDATE club_member_cleaned
-SET job_title = "Not Specified"
-WHERE job_title ='';
 ```
 
 You can check my result [here](club_member_cleaned.csv)
